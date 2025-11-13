@@ -1,113 +1,549 @@
-<div class="youtube-preview-container">
-    <!-- Linke Spalte: Kanal-Info -->
-    <a href="https://www.youtube.com/c/DEINKANALNAME" class="channel-link">
-        <div class="channel-info">
-            <h2>YOUTUBE EINBLICKE</h2>
-            <p>Exklusive Einblicke in Mercedes Tuning, OM642 Motoren und ...</p>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schrauber-Türke - Mercedes Fokus & Performance</title>
+    <meta name="description" content="Fokus auf Mercedes Fahrzeuge mit Expertise in OM642 Motoren. Performance Tuning nach Porsche-Standard.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --porsche-black: #000000;
+            --porsche-white: #ffffff;
+            --porsche-gray: #f5f5f5;
+            --porsche-dark-gray: #2c2c2c;
+            --porsche-red: #d5001c;
+            --porsche-silver: #e5e5e5;
+            --text-dark: #1a1a1a;
+            --text-light: #ffffff;
+            --text-gray: #666666;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--porsche-white);
+            font-weight: 400;
+            overflow-x: hidden;
+        }
+        
+        /* Header - Porsche Style */
+        .header {
+            background: var(--porsche-black);
+            color: var(--text-light);
+            padding: 1.2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-light);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        
+        .logo-accent {
+            color: var(--porsche-red);
+            font-weight: 700;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--porsche-red);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--porsche-red);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section - Porsche Style - Text oben, Buttons unten */
+        .hero {
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), 
+                url('Wallpaper DST Motor.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: var(--text-light);
+            position: relative;
+            text-align: center;
+            padding: 15vh 2rem 10vh 2rem;
+        }
+        
+        .hero-content-top {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-content-bottom {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-subtitle {
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+        
+        .hero-title strong {
+            font-weight: 600;
+            display: block;
+            margin-top: 0.5rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            padding: 1.2rem 3rem;
+            border: 1px solid var(--porsche-white);
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
+        .btn-primary {
+            background: var(--porsche-red);
+            color: var(--porsche-white);
+            border-color: var(--porsche-red);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--porsche-white);
+            border-color: var(--porsche-white);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary:hover {
+            background: #b30016;
+            border-color: #b30016;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        /* Sections - Porsche Clean */
+        .section {
+            padding: 8rem 2rem;
+        }
+        
+        .section-light {
+            background: var(--porsche-white);
+        }
+        
+        .section-gray {
+            background: var(--porsche-gray);
+        }
+        
+        .section-dark {
+            background: var(--porsche-black);
+            color: var(--text-light);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .section-title strong {
+            font-weight: 600;
+        }
+        
+        .section-subtitle {
+            font-size: 1rem;
+            color: var(--text-gray);
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+        
+        .section-dark .section-title,
+        .section-dark .section-subtitle {
+            color: var(--text-light);
+        }
+        
+        /* Services Grid - Porsche Minimal */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+        
+        .service-card {
+            background: var(--porsche-white);
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid var(--porsche-silver);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--porsche-red);
+        }
+        
+        .service-card h3 {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .service-card p {
+            color: var(--text-gray);
+            line-height: 1.7;
+            font-size: 0.95rem;
+            font-weight: 400;
+        }
+        
+        /* Engine Focus - Porsche Highlight */
+        .engine-focus {
+            background: var(--porsche-black);
+            color: var(--text-light);
+            padding: 4rem;
+            margin: 4rem auto;
+            max-width: 700px;
+            text-align: center;
+        }
+        
+        .engine-focus h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .engine-focus p {
+            font-size: 1rem;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+        
+        /* YouTube Section */
+        .youtube-section {
+            background: var(--porsche-black);
+            color: var(--text-light);
+            text-align: center;
+        }
+        
+        .youtube-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .youtube-logo {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: var(--porsche-red);
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: var(--porsche-gray);
+        }
+        
+        .contact-card {
+            background: var(--porsche-white);
+            padding: 4rem 3rem;
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+            border: 1px solid var(--porsche-silver);
+        }
+        
+        .contact-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dark);
+        }
+        
+        .contact-email {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--porsche-red);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-description {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        /* Footer - Porsche Minimal */
+        .footer {
+            background: var(--porsche-black);
+            color: var(--text-light);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .disclaimer {
+            background: rgba(213, 0, 28, 0.1);
+            color: var(--text-light);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border: 1px solid rgba(213, 0, 28, 0.3);
+            font-size: 0.85rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container { padding: 0 1.5rem; }
+            .nav-links { gap: 1.5rem; }
+            .hero-title { font-size: 2.5rem; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .services-grid { grid-template-columns: 1fr; }
+            .section { padding: 5rem 1.5rem; }
+            .engine-focus { padding: 2.5rem 1.5rem; margin: 2.5rem auto; }
+            .hero { padding: 12vh 1.5rem 8vh 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">SCHRAUBER<span class="logo-accent">TÜRKE</span></div>
+            <div class="nav-links">
+                <a href="#mercedes">Mercedes</a>
+                <a href="#services">Leistungen</a>
+                <a href="#youtube">YouTube</a>
+                <a href="#contact">Kontakt</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section - Porsche Style mit Text oben, Buttons unten -->
+    <section class="hero">
+        <div class="hero-content-top">
+            <div class="hero-subtitle">Performance · Präzision · Passion</div>
+            <h1 class="hero-title">
+                Mercedes<br>
+                <strong>Tuning & Expertise</strong>
+            </h1>
         </div>
-    </a>
-
-    <!-- Rechte Spalte: Video-Vorschau -->
-    <a href="https://www.youtube.com/watch?v=DEINE_VIDEO_ID" class="video-preview">
-        <div class="video-thumbnail">
-            <img src="https://i.ytimg.com/vi/DEINE_VIDEO_ID/hqdefault.jpg" alt="Video Vorschau">
-            <div class="play-button"></div>
+        
+        <div class="hero-content-bottom">
+            <div class="cta-buttons">
+                <a href="#services" class="btn btn-primary">Leistungen entdecken</a>
+                <a href="#contact" class="btn btn-secondary">Kontakt aufnehmen</a>
+            </div>
         </div>
-        <div class="video-info">
-            <h3>Mein neuestes Video</h3>
-            <p>Jetzt ansehen</p>
+    </section>
+
+    <!-- Mercedes Focus -->
+    <section class="section section-light" id="mercedes">
+        <div class="container">
+            <h2 class="section-title"><strong>Mercedes</strong> Fokus</h2>
+            <p class="section-subtitle">
+                Konzentration auf Mercedes-Benz Fahrzeuge mit besonderer Expertise im Bereich Performance und OM642 Motoren. Präzision und Qualität im Fokus.
+            </p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3>Mercedes Fokus</h3>
+                    <p>Primäre Ausrichtung auf die Marke Mercedes-Benz. Umfassende Erfahrung mit verschiedenen Modellen und Baureihen.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Performance</h3>
+                    <p>Optimierung und Tuning für verbesserte Fahrleistungen. Durchdachte Lösungen für Ihr Fahrzeug.</p>
+                </div>
+            </div>
+            
+            <div class="engine-focus">
+                <h3>OM642 Expertise</h3>
+                <p>Besondere Kenntnisse im 3.0L V6 Diesel Motor. Fundiertes Wissen in Tuning, Wartung und Optimierung des OM642 Aggregats.</p>
+            </div>
         </div>
-    </a>
-</div>
+    </section>
 
-<style>
-.youtube-preview-container {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 15px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    max-width: 800px;
-    font-family: Arial, sans-serif;
-}
+    <!-- Services -->
+    <section class="section section-gray" id="services">
+        <div class="container">
+            <h2 class="section-title">Unsere <strong>Leistungen</strong></h2>
+            <p class="section-subtitle">
+                Professionelle Services für Ihren Mercedes - transparent und kompetent. Qualität und Präzision nach höchsten Standards.
+            </p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Technische Beratung</h3>
+                    <p>Fachkundige Beratung und Problemanalyse für Mercedes Fahrzeuge. Ehrliche Einschätzung und praktische Lösungen.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚀</div>
+                    <h3>Performance Tuning</h3>
+                    <p>DST Performance Optimierungen für verbesserte Fahrleistungen. Durchdachte Abstimmungen für Ihr Fahrzeug.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>OM642 Kenntnisse</h3>
+                    <p>Spezifisches Wissen für den V6 Diesel Motor. Unterstützung bei Wartung und Optimierung basierend auf Erfahrung.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-.channel-link {
-    text-decoration: none;
-    color: inherit;
-    flex: 1;
-}
-.channel-link:hover {
-    background-color: #eeeeee;
-    border-radius: 4px;
-}
-.channel-info h2 {
-    margin: 0 0 8px 0;
-    color: #333;
-}
-.channel-info p {
-    margin: 0;
-    color: #666;
-    font-size: 0.9em;
-}
+    <!-- YouTube -->
+    <section class="section youtube-section" id="youtube">
+        <div class="container">
+            <div class="youtube-container">
+                <div class="youtube-logo">▶️</div>
+                <h2 class="section-title"><strong>YouTube</strong> Einblicke</h2>
+                <p class="section-subtitle">
+                    Exklusive Einblicke in Mercedes Tuning, OM642 Motoren und technische Projekte. Praxisnahe Inhalte von Experten.
+                </p>
+                <a href="https://www.youtube.com/@Schrauber-turke" target="_blank" class="btn btn-primary" style="margin-top: 2rem;">
+                    Kanal besuchen
+                </a>
+            </div>
+        </div>
+    </section>
 
-.video-preview {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    color: inherit;
-    padding: 8px;
-    border-radius: 4px;
-}
-.video-preview:hover {
-    background-color: #eeeeee;
-}
-.video-thumbnail {
-    position: relative;
-    width: 120px;
-    height: 68px;
-    flex-shrink: 0;
-    background-color: #ddd;
-    border-radius: 4px;
-    overflow: hidden;
-}
-.video-thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-.play-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 30px;
-    height: 30px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
-    clip-path: polygon(0 0, 0 100%, 100% 50%);
-}
-.video-info h3 {
-    margin: 0 0 5px 0;
-    font-size: 1em;
-    color: #333;
-}
-.video-info p {
-    margin: 0;
-    font-size: 0.8em;
-    color: #666;
-}
+    <!-- Contact -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title"><strong>Kontakt</strong></h2>
+            <p class="section-subtitle">
+                Professionelle Beratung für Ihr Mercedes Vorhaben. Wir finden die optimale Lösung für Ihre Anforderungen.
+            </p>
+            
+            <div class="contact-card">
+                <h3>Kontaktaufnahme</h3>
+                <div class="contact-email">info@schrauber-turke.de</div>
+                <p class="contact-description">
+                    Für unverbindliche Anfragen und fachkundigen Austausch zu Ihrem Mercedes Projekt.
+                </p>
+            </div>
+        </div>
+    </section>
 
-@media (max-width: 600px) {
-    .youtube-preview-container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .video-preview {
-        width: 100%;
-    }
-}
-</style>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Schrauber-Türke - DST Performance</p>
+            <p>Mercedes Fokus · OM642 Expertise · Performance Tuning</p>
+            
+            <div class="disclaimer">
+                <strong>Hinweis:</strong> Private Tätigkeit mit Fokus auf Mercedes Fahrzeuge
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
