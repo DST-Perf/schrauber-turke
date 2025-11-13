@@ -84,11 +84,12 @@
             background-attachment: fixed;
             min-height: 100vh;
             display: flex;
-            align-items: center;
+            align-items: flex-start; /* Geändert von center zu flex-start */
             justify-content: center;
             text-align: center;
             color: var(--text-light);
             padding: 0 2rem;
+            padding-top: 25vh; /* Badge im oberen Viertel */
         }
         
         .hero-content {
@@ -102,7 +103,6 @@
             padding: 1rem 2rem;
             border-radius: 50px;
             font-weight: bold;
-            margin-bottom: 2rem;
             border: 2px solid rgba(255,255,255,0.3);
             font-size: 1.2rem;
         }
@@ -224,6 +224,22 @@
             border: 2px solid #ff0000;
         }
         
+        .btn-primary {
+            display: inline-block;
+            background: #ff0000;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,0,0,0.3);
+        }
+        
         /* Footer */
         .footer {
             background: #2c3e50;
@@ -244,6 +260,7 @@
         /* Responsive */
         @media (max-width: 768px) {
             .nav-links { display: none; }
+            .hero { padding-top: 20vh; }
         }
     </style>
 </head>
@@ -341,7 +358,7 @@
                 <p style="margin-bottom: 2rem; opacity: 0.9;">
                     Erleben Sie Mercedes Tuning, OM642 Motoren und spannende Schrauber-Projekte
                 </p>
-                <a href="https://www.youtube.com/@Schrauber-turke" target="_blank" class="btn btn-primary" style="display: inline-block; background: #ff0000; color: white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: bold;">
+                <a href="https://www.youtube.com/@Schrauber-turke" target="_blank" class="btn-primary">
                     Kanal abonnieren
                 </a>
             </div>
