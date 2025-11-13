@@ -329,15 +329,42 @@
         }
         
         .youtube-container {
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 4rem 2rem;
         }
         
-        .youtube-logo {
-            font-size: 3rem;
-            margin-bottom: 2rem;
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            margin-bottom: 3rem;
+            border: 2px solid var(--porsche-red);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .channel-link {
+            display: inline-block;
+            margin-top: 2rem;
             color: var(--porsche-red);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+        
+        .channel-link:hover {
+            color: var(--text-light);
         }
         
         /* Contact Section */
@@ -409,6 +436,7 @@
             .section { padding: 5rem 1.5rem; }
             .engine-focus { padding: 2.5rem 1.5rem; margin: 2.5rem auto; }
             .hero { padding: 12vh 1.5rem 8vh 1.5rem; }
+            .youtube-container { padding: 3rem 1rem; }
         }
     </style>
 </head>
@@ -504,13 +532,25 @@
     <section class="section youtube-section" id="youtube">
         <div class="container">
             <div class="youtube-container">
-                <div class="youtube-logo">▶️</div>
                 <h2 class="section-title"><strong>YouTube</strong> Einblicke</h2>
                 <p class="section-subtitle">
                     Exklusive Einblicke in Mercedes Tuning, OM642 Motoren und technische Projekte. Praxisnahe Inhalte von Experten.
                 </p>
-                <a href="https://www.youtube.com/@Schrauber-turke" target="_blank" class="btn btn-primary" style="margin-top: 2rem;">
-                    Kanal besuchen
+                
+                <!-- Eingebettetes Video als Vorschau -->
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/vO6qE9vE1BE" 
+                        title="Schrauber-Türke YouTube Video"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                
+                <!-- Link zum gesamten Kanal -->
+                <a href="https://www.youtube.com/@Schrauber-turke" target="_blank" class="channel-link">
+                    ↗ Gesamten Kanal entdecken
                 </a>
             </div>
         </div>
