@@ -104,7 +104,7 @@
             width: 100%;
         }
         
-        /* Hero Section - Porsche Style */
+        /* Hero Section - Porsche Style - Text oben, Buttons unten */
         .hero {
             background: 
                 linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), 
@@ -113,16 +113,22 @@
             background-position: center;
             min-height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: space-between;
             color: var(--text-light);
             position: relative;
             text-align: center;
+            padding: 15vh 2rem 10vh 2rem;
         }
         
-        .hero-content {
+        .hero-content-top {
             max-width: 800px;
-            padding: 0 2rem;
+            margin: 0 auto;
+        }
+        
+        .hero-content-bottom {
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         .hero-subtitle {
@@ -137,7 +143,7 @@
         .hero-title {
             font-size: 4rem;
             font-weight: 300;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             line-height: 1.1;
             letter-spacing: -1px;
             text-transform: uppercase;
@@ -153,7 +159,7 @@
             display: flex;
             gap: 1.5rem;
             justify-content: center;
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
         
         .btn {
@@ -402,6 +408,7 @@
             .services-grid { grid-template-columns: 1fr; }
             .section { padding: 5rem 1.5rem; }
             .engine-focus { padding: 2.5rem 1.5rem; margin: 2.5rem auto; }
+            .hero { padding: 12vh 1.5rem 8vh 1.5rem; }
         }
     </style>
 </head>
@@ -419,14 +426,17 @@
         </nav>
     </header>
 
-    <!-- Hero Section - Porsche Style -->
+    <!-- Hero Section - Porsche Style mit Text oben, Buttons unten -->
     <section class="hero">
-        <div class="hero-content">
+        <div class="hero-content-top">
             <div class="hero-subtitle">Performance · Präzision · Passion</div>
             <h1 class="hero-title">
                 Mercedes<br>
                 <strong>Tuning & Expertise</strong>
             </h1>
+        </div>
+        
+        <div class="hero-content-bottom">
             <div class="cta-buttons">
                 <a href="#services" class="btn btn-primary">Leistungen entdecken</a>
                 <a href="#contact" class="btn btn-secondary">Kontakt aufnehmen</a>
