@@ -38,7 +38,7 @@
         .header {
             background: var(--porsche-black);
             color: var(--text-light);
-            padding: 1.2rem 0;
+            padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
@@ -56,11 +56,12 @@
         }
         
         .logo {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 600;
             color: var(--text-light);
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             text-transform: uppercase;
+            z-index: 1001;
         }
         
         .logo-accent {
@@ -68,6 +69,7 @@
             font-weight: 700;
         }
         
+        /* Desktop Navigation */
         .nav-links {
             display: flex;
             gap: 3rem;
@@ -102,6 +104,79 @@
         
         .nav-links a:hover::after {
             width: 100%;
+        }
+        
+        /* Mobile Menu Button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+        
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-light);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* Mobile Navigation */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1.5rem;
+            }
+            
+            .logo {
+                font-size: 1rem;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--porsche-black);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.3s ease;
+                gap: 2rem;
+                padding: 2rem;
+                border-left: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links a {
+                font-size: 1.1rem;
+                padding: 1rem 0;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            /* Hamburger Animation */
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
         }
         
         /* Hero Section - Porsche Style - Text oben, Buttons unten */
@@ -428,8 +503,6 @@
         
         /* Responsive */
         @media (max-width: 768px) {
-            .nav-container { padding: 0 1.5rem; }
-            .nav-links { gap: 1.5rem; }
             .hero-title { font-size: 2.5rem; }
             .cta-buttons { flex-direction: column; align-items: center; }
             .services-grid { grid-template-columns: 1fr; }
@@ -437,6 +510,7 @@
             .engine-focus { padding: 2.5rem 1.5rem; margin: 2.5rem auto; }
             .hero { padding: 12vh 1.5rem 8vh 1.5rem; }
             .youtube-container { padding: 3rem 1rem; }
+            .btn { padding: 1rem 2rem; }
         }
     </style>
 </head>
@@ -445,11 +519,20 @@
     <header class="header">
         <nav class="nav-container">
             <div class="logo">SCHRAUBER<span class="logo-accent">TÜRKE</span></div>
-            <div class="nav-links">
+            
+            <!-- Desktop Navigation -->
+            <div class="nav-links" id="navLinks">
                 <a href="#mercedes">Mercedes</a>
                 <a href="#services">Leistungen</a>
                 <a href="#youtube">YouTube</a>
                 <a href="#contact">Kontakt</a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </nav>
     </header>
@@ -585,5 +668,33 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link
+        const navItems = document.querySelectorAll('.nav-links a');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
