@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schrauber-Türke - Mercedes Spezialist & Performance Tuning</title>
     <meta name="description" content="Mercedes Spezialist mit Fokus auf OM642 Motoren. Professionelle Beratung und Performance Tuning für Ihre Mercedes Fahrzeuge.">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --mercedes-blue: #0056a4;
+            --mercedes-dark: #003b73;
             --mercedes-silver: #f8f9fa;
             --performance-red: #e74c3c;
-            --dark-bg: #1a1a1a;
+            --gold: #ffd700;
+            --dark-bg: #0a0a0a;
             --text-light: #ffffff;
-            --text-dark: #333333;
+            --text-dark: #2c3e50;
         }
         
         * {
@@ -22,381 +25,579 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.7;
             color: var(--text-dark);
             background: var(--mercedes-silver);
+            overflow-x: hidden;
         }
         
-        /* Header & Navigation */
+        /* Header & Navigation - Premium */
         .header {
-            background: #000000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
             color: var(--text-light);
-            padding: 0.5rem 0;
+            padding: 1.2rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.8);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .header.scrolled {
+            background: rgba(10, 10, 10, 0.98);
+            padding: 0.8rem 0;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
         }
         
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
+            padding: 0 3rem;
         }
         
-        .logo-container {
-            display: flex;
-            align-items: center;
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
         
-        .logo-img {
-            height: 50px;
-            width: auto;
-            transition: transform 0.3s ease;
-        }
-        
-        .logo-img:hover {
-            transform: scale(1.05);
+        .logo-accent {
+            color: var(--gold);
+            font-weight: 800;
         }
         
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 3rem;
+            align-items: center;
         }
         
         .nav-links a {
             color: var(--text-light);
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
         }
         
         .nav-links a:hover {
-            color: var(--performance-red);
-            background: rgba(255,255,255,0.1);
+            color: var(--gold);
         }
         
-        /* Hero Section - Clean */
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section - Premium */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                        url('Wallpaper DST Motor.jpg');
+            background: 
+                linear-gradient(135deg, rgba(0, 86, 164, 0.1) 0%, rgba(0, 59, 115, 0.2) 100%),
+                url('Wallpaper DST Motor.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             min-height: 100vh;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: center;
             text-align: center;
             color: var(--text-light);
-            padding: 0 2rem;
-            padding-top: 25vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                45deg,
+                rgba(0, 0, 0, 0.7) 0%,
+                rgba(0, 86, 164, 0.3) 50%,
+                rgba(0, 0, 0, 0.7) 100%
+            );
+            z-index: 1;
         }
         
         .hero-content {
-            max-width: 800px;
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+        
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 3px 3px 15px rgba(0,0,0,0.8);
+            background: linear-gradient(45deg, #fff, var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
+            color: var(--text-light);
         }
         
         .specialization-badge {
             display: inline-block;
-            background: linear-gradient(45deg, var(--mercedes-blue), #0077be);
+            background: linear-gradient(135deg, var(--mercedes-blue), var(--mercedes-dark));
             color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: bold;
+            padding: 1.5rem 3rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
             border: 2px solid rgba(255,255,255,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1.3rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            cursor: pointer;
             font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            overflow: hidden;
         }
         
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
+        .btn-primary {
+            background: linear-gradient(135deg, var(--performance-red), #c0392b);
+            color: white;
+            box-shadow: 0 5px 20px rgba(231, 76, 60, 0.4);
         }
         
-        .scroll-indicator span {
-            display: block;
-            width: 30px;
-            height: 30px;
-            border-bottom: 2px solid white;
-            border-right: 2px solid white;
-            transform: rotate(45deg);
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            backdrop-filter: blur(10px);
         }
         
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-10px); }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
         }
         
-        /* Sections */
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #c0392b, var(--performance-red));
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        
+        /* Sections - Premium */
         .section {
-            padding: 5rem 2rem;
+            padding: 8rem 2rem;
+            position: relative;
         }
         
         .section-dark {
-            background: var(--dark-bg);
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1a2e 100%);
             color: var(--text-light);
         }
         
         .section-mercedes {
-            background: linear-gradient(135deg, var(--mercedes-blue) 0%, #0077be 100%);
+            background: linear-gradient(135deg, var(--mercedes-blue) 0%, var(--mercedes-dark) 100%);
             color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-mercedes::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="rgba(255,255,255,0.03)"><polygon points="50,0 100,50 50,100 0,50"/></svg>');
+            background-size: 200px;
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-100px, -100px) rotate(360deg); }
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
         
         .section-title {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             position: relative;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
         
         .section-title::after {
             content: '';
             display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--performance-red);
-            margin: 1rem auto;
-            border-radius: 2px;
+            width: 120px;
+            height: 5px;
+            background: linear-gradient(45deg, var(--performance-red), var(--gold));
+            margin: 2rem auto;
+            border-radius: 3px;
         }
         
-        /* Services Grid */
+        /* Services Grid - Premium */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
         }
         
         .service-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,249,250,0.98));
+            padding: 3rem 2rem;
+            border-radius: 25px;
             text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .service-card:hover::before {
+            left: 100%;
         }
         
         .service-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
         }
         
         .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--mercedes-blue), var(--mercedes-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .service-card h3 {
-            color: var(--mercedes-blue);
-            margin-bottom: 1rem;
+            color: var(--mercedes-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
         }
         
-        /* Mercedes Special */
+        .service-card p {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        /* Mercedes Special - Premium */
         .engine-special {
-            background: rgba(255,255,255,0.1);
-            padding: 3rem;
-            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+            padding: 4rem;
+            border-radius: 30px;
             text-align: center;
-            margin: 2rem auto;
-            max-width: 600px;
-            border: 2px solid rgba(255,255,255,0.3);
-            backdrop-filter: blur(10px);
+            margin: 3rem auto;
+            max-width: 700px;
+            border: 2px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
         }
         
-        /* YouTube Section */
+        .engine-special::before {
+            content: '⚙️';
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            font-size: 8rem;
+            opacity: 0.1;
+            transform: rotate(45deg);
+        }
+        
+        .engine-special h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--gold), #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* YouTube Section - Premium */
         .youtube-section {
-            background: var(--dark-bg);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
             text-align: center;
+            position: relative;
         }
         
         .youtube-container {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
-            background: rgba(255,255,255,0.05);
-            padding: 3rem;
-            border-radius: 20px;
-            border: 2px solid #ff0000;
+            background: linear-gradient(135deg, rgba(255,0,0,0.1), rgba(255,0,0,0.05));
+            padding: 4rem;
+            border-radius: 30px;
+            border: 2px solid rgba(255,0,0,0.3);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 50px rgba(255,0,0,0.1);
+            position: relative;
+            overflow: hidden;
         }
         
-        .btn-primary {
+        .youtube-logo {
+            font-size: 5rem;
+            margin-bottom: 2rem;
             display: inline-block;
-            background: #ff0000;
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
+            background: linear-gradient(45deg, #ff0000, #cc0000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255,0,0,0.3);
-        }
-        
-        /* Footer */
+        /* Footer - Premium */
         .footer {
-            background: #2c3e50;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
             color: var(--text-light);
             text-align: center;
-            padding: 2rem;
+            padding: 3rem 2rem;
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(45deg, var(--mercedes-blue), var(--performance-red), var(--gold));
         }
         
         .disclaimer {
-            background: var(--performance-red);
+            background: linear-gradient(135deg, var(--performance-red), #c0392b);
             color: white;
-            padding: 1rem;
-            border-radius: 10px;
-            margin-top: 2rem;
-            font-size: 0.9rem;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 3rem;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 5px 20px rgba(231, 76, 60, 0.3);
+        }
+        
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         /* Responsive */
         @media (max-width: 768px) {
+            .hero-title { font-size: 3rem; }
+            .hero-subtitle { font-size: 1.5rem; }
+            .section-title { font-size: 2.5rem; }
             .nav-links { 
-                gap: 1rem;
+                gap: 1.5rem;
                 font-size: 0.9rem;
             }
-            .nav-links a {
-                padding: 0.4rem 0.8rem;
-            }
-            .logo-img {
-                height: 40px;
-            }
-            .hero { padding-top: 20vh; }
+            .nav-container { padding: 0 1.5rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .btn { padding: 1.2rem 2.5rem; font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
+    <header class="header" id="header">
         <nav class="nav-container">
-            <div class="logo-container">
-                <a href="#home" class="logo-link">
-                    <img src="LOGODSTWEB.png" alt="Schrauber Türke DST Performance" class="logo-img">
-                </a>
-            </div>
+            <div class="logo">SCHRAUBER<span class="logo-accent">TÜRKE</span></div>
             <div class="nav-links">
-                <a href="#mercedes">Mercedes</a>
-                <a href="#services">Services</a>
-                <a href="#youtube">YouTube</a>
-                <a href="#contact">Kontakt</a>
+                <a href="#mercedes">MERCEDES</a>
+                <a href="#services">SERVICES</a>
+                <a href="#youtube">YOUTUBE</a>
+                <a href="#contact">KONTAKT</a>
             </div>
         </nav>
     </header>
 
-    <!-- Hero Section - Clean -->
+    <!-- Hero Section - Premium -->
     <section class="hero" id="home">
         <div class="hero-content">
+            <h1 class="hero-title">DER SCHRAUBER TÜRKE</h1>
+            <p class="hero-subtitle">DST - PERFORMANCE</p>
             <div class="specialization-badge">
                 ⭐ MERCEDES SPEZIALIST ⭐<br>
-                Passion für OM642 Motoren
+                PASSION FÜR OM642 MOTOREN
             </div>
-        </div>
-        <div class="scroll-indicator">
-            <span></span>
+            <div class="cta-buttons">
+                <a href="#mercedes" class="btn btn-primary">ENTDECKEN</a>
+                <a href="#contact" class="btn btn-secondary">KONTAKT</a>
+            </div>
         </div>
     </section>
 
     <!-- Mercedes Specialization -->
-    <section class="section section-mercedes" id="mercedes">
+    <section class="section section-mercedes fade-in" id="mercedes">
         <div class="container">
-            <h2 class="section-title">Mercedes Spezialist</h2>
-            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem;">
-                Exzellenz für die Sterne von Stuttgart
+            <h2 class="section-title">MERCEDES SPEZIALIST</h2>
+            <p style="text-align: center; font-size: 1.4rem; margin-bottom: 4rem; opacity: 0.9;">
+                EXZELLENZ FÜR DIE STERNE VON STUTTGART
             </p>
             
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <div class="service-icon">🚗</div>
-                    <h3>Mercedes Only</h3>
-                    <p>Spezialisiert auf Mercedes Fahrzeuge aller Baureihen und Modelle</p>
+                    <h3>MERCEDES ONLY</h3>
+                    <p>Spezialisiert auf Mercedes Fahrzeuge aller Baureihen und Modelle - Von der A-Klasse bis zur S-Klasse</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <div class="service-icon">🔧</div>
-                    <h3>Komplettbereich</h3>
-                    <p>Vom Kompaktwagen bis zur Luxuslimousine - wir kennen uns aus</p>
+                    <h3>KOMPLETTBEREICH</h3>
+                    <p>Vom Kompaktwagen bis zur Luxuslimousine - Umfassendes Know-how für die gesamte Mercedes Flotte</p>
                 </div>
             </div>
             
-            <div class="engine-special">
+            <div class="engine-special fade-in">
                 <h3>⚙️ OM642 SPEZIALIST</h3>
                 <p><strong>Meine Leidenschaft:</strong> Der legendäre 3.0L V6 Diesel Motor</p>
-                <p style="margin-top: 1rem;">Tuning, Reparatur und Optimierung des OM642 Motors</p>
+                <p style="margin-top: 1.5rem; font-size: 1.2rem;">Tuning, Reparatur und Optimierung des OM642 Motors - Perfektion für Ihren Mercedes</p>
             </div>
         </div>
     </section>
 
     <!-- Services -->
-    <section class="section" id="services">
+    <section class="section fade-in" id="services">
         <div class="container">
-            <h2 class="section-title">Unsere Services</h2>
+            <h2 class="section-title">UNSERE SERVICES</h2>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <div class="service-icon">🔧</div>
-                    <h3>Technische Beratung</h3>
-                    <p>Professionelle Unterstützung und Tipps für Ihre Mercedes Fahrzeuge</p>
+                    <h3>TECHNISCHE BERATUNG</h3>
+                    <p>Professionelle Unterstützung und Experten-Tipps für Ihre Mercedes Fahrzeuge - Individuelle Lösungen für Ihre Bedürfnisse</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <div class="service-icon">🚀</div>
-                    <h3>Performance Tuning</h3>
-                    <p>DST Performance Optimierung für mehr Leistung und Effizienz</p>
+                    <h3>PERFORMANCE TUNING</h3>
+                    <p>DST Performance Optimierung für mehr Leistung und Effizienz - Maximieren Sie das Potenzial Ihres Mercedes</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card fade-in">
                     <div class="service-icon">💡</div>
-                    <h3>OM642 Know-How</h3>
-                    <p>Spezialwissen für den V6 Diesel Motor - Wartung und Tuning</p>
+                    <h3>OM642 KNOW-HOW</h3>
+                    <p>Spezialwissen für den V6 Diesel Motor - Wartung, Reparatur und Tuning aus Leidenschaft und Expertise</p>
                 </div>
-            </div>
-            
-            <div class="disclaimer">
-                <strong>Hinweis:</strong> Private Hobby-Tätigkeit - keine gewerbliche Werkstatt
             </div>
         </div>
     </section>
 
     <!-- YouTube -->
-    <section class="section section-dark youtube-section" id="youtube">
+    <section class="section section-dark youtube-section fade-in" id="youtube">
         <div class="container">
-            <h2 class="section-title">YouTube Kanal</h2>
-            <div class="youtube-container">
-                <div style="font-size: 4rem; margin-bottom: 1rem;">📺</div>
-                <h3 style="margin-bottom: 1rem;">Schrauber-Türke</h3>
-                <p style="margin-bottom: 2rem; opacity: 0.9;">
-                    Erleben Sie Mercedes Tuning, OM642 Motoren und spannende Schrauber-Projekte
+            <h2 class="section-title">YOUTUBE KANAL</h2>
+            <div class="youtube-container fade-in">
+                <div class="youtube-logo">📺</div>
+                <h3 style="margin-bottom: 1rem; font-size: 2rem;">SCHRAUBER-TÜRKE</h3>
+                <p style="margin-bottom: 3rem; opacity: 0.9; font-size: 1.2rem;">
+                    Erleben Sie exklusive Einblicke in Mercedes Tuning, OM642 Motoren und spannende Schrauber-Projekte
                 </p>
-                <a href="https://www.youtube.com/@Schrauber-turke" target="_blank" class="btn-primary">
-                    Kanal abonnieren
+                <a href="https://www.youtube.com/@Schrauber-turke" target="_blank" class="btn btn-primary" style="background: linear-gradient(135deg, #ff0000, #cc0000);">
+                    KANAL ABONNIEREN
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Contact -->
-    <section class="section" id="contact">
+    <section class="section fade-in" id="contact">
         <div class="container">
-            <h2 class="section-title">Kontakt</h2>
-            <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-                <p style="font-size: 1.2rem; margin-bottom: 2rem;">
-                    Haben Sie Fragen zu Mercedes Fahrzeugen oder dem OM642 Motor?
+            <h2 class="section-title">KONTAKT</h2>
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <p style="font-size: 1.4rem; margin-bottom: 3rem; color: var(--text-dark);">
+                    Bereit für die nächste Stufe Ihres Mercedes?
                 </p>
-                <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px;">
-                    <h3 style="color: var(--mercedes-blue); margin-bottom: 1rem;">📧 Email</h3>
-                    <p style="font-size: 1.1rem; font-weight: bold;">info@schrauber-turke.de</p>
+                <div style="background: linear-gradient(135deg, #fff, #f8f9fa); padding: 3rem; border-radius: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); border: 1px solid rgba(0,86,164,0.1);">
+                    <h3 style="color: var(--mercedes-blue); margin-bottom: 2rem; font-size: 2rem;">📧 PROFESSIONELLE BERATUNG</h3>
+                    <p style="font-size: 1.3rem; font-weight: 700; color: var(--mercedes-dark); margin-bottom: 2rem;">info@schrauber-turke.de</p>
+                    <p style="color: var(--text-dark); opacity: 0.8; font-size: 1.1rem;">Kontaktieren Sie uns für eine individuelle Beratung zu Ihrem Mercedes Projekt</p>
                 </div>
             </div>
         </div>
@@ -405,8 +606,38 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Schrauber-Türke - DST Performance. Alle Rechte vorbehalten.</p>
+            <p style="font-size: 1.1rem; margin-bottom: 1rem;">&copy; 2024 SCHRAUBER-TÜRKE - DST PERFORMANCE</p>
+            <p style="opacity: 0.8; font-size: 0.9rem;">Alle Rechte vorbehalten | Professionelle Mercedes Spezialisierung</p>
+            
+            <div class="disclaimer">
+                <strong>HINWEIS:</strong> Aktuell private Hobby-Tätigkeit - Geplante gewerbliche Expansion in 2024
+            </div>
         </div>
     </footer>
+
+    <script>
+        // Scroll Animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        fadeElements.forEach(el => observer.observe(el));
+        
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
